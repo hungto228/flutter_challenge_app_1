@@ -18,14 +18,26 @@ class MyApp extends StatelessWidget {
             backgroundColor: Colors.blueGrey,
           ),
           body: SafeArea(
-            child: Container(
-              margin: EdgeInsets.zero,
-              height: 100,
-              width: 100,
-              color: Colors.red,
-              child: Text("chaof"),
-            ),
-          )),
+              child: Row(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: <Widget>[
+              Container(
+                height: 100,
+                child: Text("Container 1"),
+                color: Colors.red,
+                margin: EdgeInsets.zero,
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Container(
+                height: 100,
+                child: Text("container 2"),
+                color: Colors.yellow,
+                margin: EdgeInsets.symmetric(horizontal: 30, vertical: 20),
+              ),
+            ],
+          ))),
     );
   }
 }
