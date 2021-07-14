@@ -27,8 +27,9 @@ class MyApp extends StatelessWidget {
                   Text(
                     "hungto",
                     style: TextStyle(
+                        fontFamily: "GreatVibes",
                         fontSize: 40,
-                        color: Colors.white,
+                        color: Colors.red,
                         fontWeight: FontWeight.bold),
                   )
                 ],
