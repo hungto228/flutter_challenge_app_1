@@ -11,65 +11,35 @@ class SYlophone extends StatelessWidget {
     player.play("note$number.wav");
   }
 
+  Expanded buildKey(
+      {required Color color, required int soundNumber, required int click}) {
+    return Expanded(
+      child: FlatButton(
+          onPressed: () {
+            playSound(soundNumber);
+          },
+          child: Text("Click+$click"),
+          color: color),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
+        backgroundColor: Colors.black,
         body: SafeArea(
-          child: Center(
-            child: Column(
-              children: [
-                FlatButton(
-                  onPressed: () {
-                    playSound(1);
-                  },
-                  child: Text("Clik1"),
-                  color: Colors.red,
-                ),
-                FlatButton(
-                  onPressed: () {
-                    playSound(2);
-                  },
-                  child: Text("Clik2"),
-                  color: Colors.orange,
-                ),
-                FlatButton(
-                  onPressed: () {
-                    playSound(3);
-                  },
-                  child: Text("Clik3"),
-                  color: Colors.yellow,
-                ),
-                FlatButton(
-                  onPressed: () {
-                    playSound(4);
-                  },
-                  child: Text("Clik4"),
-                  color: Colors.green,
-                ),
-                FlatButton(
-                  onPressed: () {
-                    playSound(5);
-                  },
-                  child: Text("Clik5"),
-                  color: Colors.blueGrey,
-                ),
-                FlatButton(
-                  onPressed: () {
-                    playSound(6);
-                  },
-                  child: Text("Clik6"),
-                  color: Colors.blue,
-                ),
-                FlatButton(
-                  onPressed: () {
-                    playSound(7);
-                  },
-                  child: Text("Clik7"),
-                  color: Colors.purple,
-                )
-              ],
-            ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              buildKey(color: Colors.red, soundNumber: 1, click: 1),
+              buildKey(color: Colors.orange, soundNumber: 2, click: 2),
+              buildKey(color: Colors.yellow, soundNumber: 3, click: 3),
+              buildKey(color: Colors.green, soundNumber: 4, click: 4),
+              buildKey(color: Colors.teal, soundNumber: 5, click: 5),
+              buildKey(color: Colors.blue, soundNumber: 6, click: 6),
+              buildKey(color: Colors.purpleAccent, soundNumber: 7, click: 7),
+            ],
           ),
         ),
       ),
