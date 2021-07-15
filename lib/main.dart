@@ -13,12 +13,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
         home: Scaffold(
+            backgroundColor: Colors.teal,
             appBar: AppBar(
               title: Text('i am rhingich'),
               backgroundColor: Colors.blueGrey,
             ),
             body: SafeArea(
               child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   CircleAvatar(
                     radius: 50,
@@ -39,43 +41,45 @@ class MyApp extends StatelessWidget {
                         color: Colors.yellow,
                         fontFamily: "GreatVibes"),
                   ),
-                  Container(
-                    color: Colors.blueGrey,
-                    margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                    padding: EdgeInsets.all(10),
-                    child: Row(
-                      children: [
-                        Icon(
-                          Icons.phone,
-                        ),
-                        SizedBox(
-                          width: 10,
-                        ),
-                        Text(
-                          "0379117280",
-                          style: TextStyle(color: Colors.red, fontSize: 20),
-                        )
-                      ],
+                  SizedBox(
+                    height: 20,
+                    width: 150,
+                    child: Divider(
+                      color: Colors.red,
                     ),
                   ),
-                  Container(
-                    color: Colors.red,
-                    padding: EdgeInsets.all(10),
+                  Card(
+                    color: Colors.blueGrey,
                     margin: EdgeInsets.symmetric(vertical: 10, horizontal: 25),
-                    child: Row(
-                      children: [
-                        Icon(Icons.email),
-                        SizedBox(width: 10),
-                        Text(
-                          "hungto228@gmail.com",
-                          style: TextStyle(
-                              fontSize: 20,
-                              color: Colors.black,
-                              fontStyle: FontStyle.normal),
-                        )
-                      ],
+                    child: Padding(
+                      padding: EdgeInsets.all(10),
+                      child: ListTile(
+                        leading: Icon(
+                          Icons.phone,
+                        ),
+                        title: Text(
+                          "0379117280",
+                          style: TextStyle(color: Colors.red, fontSize: 20),
+                        ),
+                      ),
                     ),
-                  )
+                  ),
+                  Card(
+                      color: Colors.red,
+                      margin:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 25),
+                      child: Padding(
+                          padding: EdgeInsets.all(10),
+                          child: ListTile(
+                            leading: Icon(Icons.mail),
+                            title: Text(
+                              "hungto228@gmail.com",
+                              style: TextStyle(
+                                  fontSize: 20,
+                                  color: Colors.black,
+                                  fontStyle: FontStyle.italic),
+                            ),
+                          ))),
                 ],
               ),
             )));
