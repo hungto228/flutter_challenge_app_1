@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 // the main function start point for all app
@@ -17,7 +17,17 @@ void main() {
   ));
 }
 
-class DicePage extends StatelessWidget {
+class DicePage extends StatefulWidget {
+  const DicePage({Key? key}) : super(key: key);
+
+  @override
+  _DicePageState createState() => _DicePageState();
+}
+
+class _DicePageState extends State<DicePage> {
+  int leftDicenumber = 1;
+  int rightDicenumber = 1;
+
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -26,16 +36,20 @@ class DicePage extends StatelessWidget {
           Expanded(
             child: FlatButton(
                 onPressed: () {
-                  print("left button");
+                  setState(() {
+                    leftDicenumber = Random().nextInt(6) + 1;
+                  });
                 },
-                child: Image.asset("images/dice1.png")),
+                child: Image.asset("images/dice$leftDicenumber.png")),
           ),
           Expanded(
             child: FlatButton(
                 onPressed: () {
-                  print(" right bottom");
+                  setState(() {
+                    rightDicenumber = Random().nextInt(6) + 1;
+                  });
                 },
-                child: Image.asset("images/dice1.png")),
+                child: Image.asset("images/dice$rightDicenumber.png")),
           ),
         ],
       ),
