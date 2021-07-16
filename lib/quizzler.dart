@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/quiz_brain.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 QuizBrain quizBrain = QuizBrain();
 
@@ -37,11 +38,26 @@ class _QuizpageState extends State<Quizpage> {
 
   void checkAnswer(bool userPickedAnswer) {
     bool correctAnswer = quizBrain.getQuestisionAnswer();
-    if (userPickedAnswer == correctAnswer) {
-      scoreKeeper.add(Icon(Icons.check, color: Colors.green));
-    } else {
-      scoreKeeper.add(Icon(Icons.close, color: Colors.red));
-    }
+    setState(() {
+      if (quizBrain.isFinished() == true) {
+        //alert
+        Alert(
+          context: context,
+          title: "finish",
+          desc: "the finish in quiz",
+        ).show();
+        //reset
+        quizBrain.reset();
+        scoreKeeper = [];
+      } else {
+        if (userPickedAnswer == correctAnswer) {
+          scoreKeeper.add(Icon(Icons.check, color: Colors.green));
+        } else {
+          scoreKeeper.add(Icon(Icons.close, color: Colors.red));
+        }
+        quizBrain.nestQuestion();
+      }
+    });
   }
 
   @override
@@ -75,9 +91,6 @@ class _QuizpageState extends State<Quizpage> {
             onPressed: () {
               //user oicker true
               checkAnswer(true);
-              setState(() {
-                quizBrain.nestQuestion();
-              });
             },
           ),
         )),
@@ -93,9 +106,6 @@ class _QuizpageState extends State<Quizpage> {
             ),
             onPressed: () {
               checkAnswer(false);
-              setState(() {
-                quizBrain.nestQuestion();
-              });
             },
           ),
         )),

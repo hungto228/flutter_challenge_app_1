@@ -21,4 +21,17 @@ class QuizBrain {
   bool getQuestisionAnswer() {
     return listQuestion[questionNumber].questionAnswer;
   }
+
+  bool isFinished() {
+    if (questionNumber >= listQuestion.length - 1) {
+      return true;
+      print("now return");
+    } else {
+      return false;
+    }
+  }
+
+  void reset() {
+    questionNumber = 0;
+  }
 }
