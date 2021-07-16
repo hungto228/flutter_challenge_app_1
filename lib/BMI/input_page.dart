@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/BMI/rousable_cart.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import 'icon_content.dart';
 
 const bottomContainerheight = 70.0;
-const activeCardColor = Color(0xFF1D1E33);
+const activeCardColor = Color(0xFF37384C);
+const inactiveCardColor = Color(0xff111328);
 const bottomContainerColor = Color(0xFFEB1555);
 
 class InputPage extends StatefulWidget {
@@ -12,6 +17,28 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Color maleCardColor = inactiveCardColor;
+  Color femaleCardColor = inactiveCardColor;
+  void updateColor(int gender) {
+    if (gender == 1) {
+      if (maleCardColor == inactiveCardColor) {
+        maleCardColor = activeCardColor;
+        femaleCardColor = inactiveCardColor;
+      } else {
+        maleCardColor = inactiveCardColor;
+      }
+    }
+    //female
+    if (gender == 2) {
+      if (femaleCardColor == inactiveCardColor) {
+        femaleCardColor = activeCardColor;
+        maleCardColor = inactiveCardColor;
+      } else {
+        femaleCardColor = inactiveCardColor;
+      }
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,32 +51,54 @@ class _InputPageState extends State<InputPage> {
                 child: Row(
               children: [
                 Expanded(
-                    child: ReusableCard(
-                  colour: activeCardColor,
+                    child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      updateColor(1);
+                    });
+                  },
+                  child: ReusableCard(
+                    colour: maleCardColor,
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.mars,
+                      lable: "Male",
+                    ),
+                  ),
                 )),
                 Expanded(
-                    child: ReusableCard(
-                  colour: activeCardColor,
+                    child: GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      updateColor(2);
+                    });
+                  },
+                  child: ReusableCard(
+                    colour: femaleCardColor,
+                    cardChild: IconContent(
+                      icon: FontAwesomeIcons.venus,
+                      lable: "Female",
+                    ),
+                  ),
                 ))
               ],
             )),
-            Expanded(
-                child: ReusableCard(
-              colour: activeCardColor,
-            )),
-            Expanded(
-                child: Row(
-              children: [
-                Expanded(
-                    child: ReusableCard(
-                  colour: activeCardColor,
-                )),
-                Expanded(
-                    child: ReusableCard(
-                  colour: activeCardColor,
-                ))
-              ],
-            )),
+            // Expanded(
+            //     child: ReusableCard(
+            //   colour: activeCardColor,
+            // )),
+            // Expanded(
+            //     child: Row(
+            //   children: [
+            //     Expanded(
+            //         child: ReusableCard(
+            //       colour: activeCardColor,
+            //     )),
+            //     Expanded(
+            //         child: ReusableCard(
+            //       colour: activeCardColor,
+            //     ))
+            //   ],
+            // )),
             Container(
               color: bottomContainerColor,
               margin: EdgeInsets.only(top: 10),
@@ -57,22 +106,6 @@ class _InputPageState extends State<InputPage> {
               height: bottomContainerheight,
             )
           ],
-        ));
-  }
-}
-
-class ReusableCard extends StatelessWidget {
-  ReusableCard({required this.colour});
-
-  final Color colour;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-        margin: EdgeInsets.all(15),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: colour,
         ));
   }
 }
