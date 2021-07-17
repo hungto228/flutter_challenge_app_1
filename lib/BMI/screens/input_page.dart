@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/BMI/result_page.dart';
-import 'package:flutter_app/BMI/rousable_cart.dart';
+import 'package:flutter_app/BMI/compoment/icon_content.dart';
+import 'package:flutter_app/BMI/screens/result_page.dart';
+import 'package:flutter_app/BMI/compoment/rousable_cart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-import 'constants.dart';
-import 'icon_content.dart';
+import '../compoment/bottom_button.dart';
+import '../constants.dart';
+import '../compoment/roundIcon_Bottom.dart';
 
 enum Gender {
   male,
@@ -234,50 +236,14 @@ class _InputPageState extends State<InputPage> {
                 )),
               ],
             )),
-            GestureDetector(
-              onTap: () {
+            BottomButton(
+              buttonTitle: "CACULATE",
+              ontap: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (context) => ResultsPage()));
               },
-              child: Container(
-                color: bottomContainerColor,
-                margin: EdgeInsets.only(top: 10),
-                width: double.infinity,
-                height: bottomContainerheight,
-                child: Center(
-                  child: Expanded(
-                    flex: 5,
-                    child: Text(
-                      "CACULATOR YOUR BMI",
-                      style: TextStyle(fontSize: 20.0),
-                    ),
-                  ),
-                ),
-              ),
             )
           ],
         ));
-  }
-}
-
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({required this.icon, required this.onPressed});
-
-  final IconData icon;
-  final Function() onPressed;
-
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(
-        icon,
-        color: Colors.white,
-      ),
-      elevation: 6.0,
-      constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
-      onPressed: onPressed,
-      shape: CircleBorder(),
-      fillColor: Color(0xff4c4f5e),
-    );
   }
 }
