@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_app/BMI/result_page.dart';
 import 'package:flutter_app/BMI/rousable_cart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -233,17 +234,23 @@ class _InputPageState extends State<InputPage> {
                 )),
               ],
             )),
-            Container(
-              color: bottomContainerColor,
-              margin: EdgeInsets.only(top: 10),
-              width: double.infinity,
-              height: bottomContainerheight,
-              child: Center(
-                child: Expanded(
-                  flex: 5,
-                  child: Text(
-                    "CACULATOR YOUR BMI",
-                    style: TextStyle(fontSize: 20.0),
+            GestureDetector(
+              onTap: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => ResultsPage()));
+              },
+              child: Container(
+                color: bottomContainerColor,
+                margin: EdgeInsets.only(top: 10),
+                width: double.infinity,
+                height: bottomContainerheight,
+                child: Center(
+                  child: Expanded(
+                    flex: 5,
+                    child: Text(
+                      "CACULATOR YOUR BMI",
+                      style: TextStyle(fontSize: 20.0),
+                    ),
                   ),
                 ),
               ),
