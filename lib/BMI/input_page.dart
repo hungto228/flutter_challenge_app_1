@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_app/BMI/rousable_cart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -20,6 +21,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
   int height = 180;
+  int weight = 74;
+  int age = 19;
 
   //amayzing
   // Color maleCardColor = inactiveCardColor;
@@ -138,26 +141,136 @@ class _InputPageState extends State<InputPage> {
                 ],
               ),
             )),
-            // Expanded(
-            //     child: Row(
-            //   children: [
-            //     Expanded(
-            //         child: ReusableCard(
-            //       colour: activeCardColor,
-            //     )),
-            //     Expanded(
-            //         child: ReusableCard(
-            //       colour: activeCardColor,
-            //     ))
-            //   ],
-            // )),
+            Expanded(
+                child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Expanded(
+                    child: ReusableCard(
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        "Weight",
+                        style: lableTextStyle,
+                      ),
+                      Text(
+                        weight.toString(),
+                        style: numberTextStyte,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.plus,
+                            onPressed: () {
+                              setState(() {
+                                weight++;
+                              });
+                            },
+                          ),
+                          SizedBox(
+                            width: 10.0,
+                          ),
+                          RoundIconButton(
+                            icon: FontAwesomeIcons.minus,
+                            onPressed: () {
+                              setState(() {
+                                weight--;
+                              });
+                            },
+                          )
+                        ],
+                      )
+                    ],
+                  ),
+                  colour: inactiveCardColor,
+                  onpress: () {},
+                )),
+                Expanded(
+                    child: ReusableCard(
+                  cardChild: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        "Age",
+                        style: lableTextStyle,
+                      ),
+                      Text(
+                        age.toString(),
+                        style: numberTextStyte,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          RoundIconButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPressed: () {
+                                setState(() {
+                                  age++;
+                                });
+                              }),
+                          SizedBox(
+                            height: 10,
+                          ),
+                          RoundIconButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPressed: () {
+                                setState(() {
+                                  age--;
+                                });
+                              })
+                        ],
+                      )
+                    ],
+                  ),
+                  colour: inactiveCardColor,
+                  onpress: () {},
+                )),
+              ],
+            )),
             Container(
               color: bottomContainerColor,
               margin: EdgeInsets.only(top: 10),
               width: double.infinity,
               height: bottomContainerheight,
+              child: Center(
+                child: Expanded(
+                  flex: 5,
+                  child: Text(
+                    "CACULATOR YOUR BMI",
+                    style: TextStyle(fontSize: 20.0),
+                  ),
+                ),
+              ),
             )
           ],
         ));
+  }
+}
+
+class RoundIconButton extends StatelessWidget {
+  RoundIconButton({required this.icon, required this.onPressed});
+
+  final IconData icon;
+  final Function() onPressed;
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      child: Icon(
+        icon,
+        color: Colors.white,
+      ),
+      elevation: 6.0,
+      constraints: BoxConstraints.tightFor(width: 56.0, height: 56.0),
+      onPressed: onPressed,
+      shape: CircleBorder(),
+      fillColor: Color(0xff4c4f5e),
+    );
   }
 }

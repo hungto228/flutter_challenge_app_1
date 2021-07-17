@@ -16,8 +16,9 @@ class IconContent extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Icon(
-          FontAwesomeIcons.icons,
+          icon,
           size: 90,
+          color: Colors.white,
         ),
         SizedBox(
           height: 15,
