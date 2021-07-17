@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/BMI/rousable_cart.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'constants.dart';
 import 'icon_content.dart';
-
-const bottomContainerheight = 70.0;
-const activeCardColor = Color(0xFF37384C);
-const inactiveCardColor = Color(0xff111328);
-const bottomContainerColor = Color(0xFFEB1555);
 
 enum Gender {
   male,
@@ -23,6 +19,8 @@ class InputPage extends StatefulWidget {
 
 class _InputPageState extends State<InputPage> {
   Gender? selectedGender;
+  int height = 180;
+
   //amayzing
   // Color maleCardColor = inactiveCardColor;
   // Color femaleCardColor = inactiveCardColor;
@@ -89,10 +87,48 @@ class _InputPageState extends State<InputPage> {
                 ))
               ],
             )),
-            // Expanded(
-            //     child: ReusableCard(
-            //   colour: activeCardColor,
-            // )),
+            Expanded(
+                child: ReusableCard(
+              colour: activeCardColor,
+              onpress: () {},
+              cardChild: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    "height",
+                    style: lableTextStyle,
+                  ),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    textBaseline: TextBaseline.alphabetic,
+                    children: [
+                      Text(
+                        height.toString(),
+                        style: numberTextStyte,
+                      ),
+                      Text(
+                        "cm",
+                        style: lableTextStyle,
+                      ),
+                    ],
+                  ),
+                  Slider(
+                    value: height.toDouble(),
+                    min: 120,
+                    max: 180,
+                    activeColor: Color(0xFFEB1555),
+                    inactiveColor: Color(0xFF8d8e98),
+                    label: "$height",
+                    onChanged: (double newvalue) {
+                      setState(() {
+                        height = newvalue.round();
+                      });
+                    },
+                  )
+                ],
+              ),
+            )),
             // Expanded(
             //     child: Row(
             //   children: [

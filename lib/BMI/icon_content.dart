@@ -2,10 +2,14 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
+import 'constants.dart';
+
 class IconContent extends StatelessWidget {
   IconContent({required this.icon, required this.lable});
+
   final IconData icon;
   final String lable;
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -20,7 +24,7 @@ class IconContent extends StatelessWidget {
         ),
         Text(
           "$lable",
-          style: TextStyle(fontSize: 18, color: Color(0xff8d8e98)),
+          style: lableTextStyle,
         )
       ],
     );
