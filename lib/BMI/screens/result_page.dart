@@ -5,8 +5,14 @@ import 'package:flutter_app/BMI/compoment/rousable_cart.dart';
 import '../constants.dart';
 
 class ResultsPage extends StatelessWidget {
-  int resultNumber = 0;
-  String resultText = "dddd";
+  ResultsPage(
+      {required this.bmiResult,
+      required this.resultText,
+      required this.interpretation});
+
+  final String bmiResult;
+  final String resultText;
+  final String interpretation;
 
   @override
   Widget build(BuildContext context) {
@@ -34,18 +40,20 @@ class ResultsPage extends StatelessWidget {
                     onpress: () {},
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      crossAxisAlignment: CrossAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.stretch,
                       children: [
                         Text(
-                          "normail",
+                          resultText.toUpperCase(),
                           style: resultsTextSty,
+                          textAlign: TextAlign.center,
                         ),
                         Text(
-                          "959",
+                          bmiResult,
                           style: bmiTextStyte,
+                          textAlign: TextAlign.center,
                         ),
                         Text(
-                          "bmi cuar banj qua thP Hvvvsdgagfhagaghsya an",
+                          interpretation,
                           style: bodytextSty,
                           textAlign: TextAlign.center,
                         ),
